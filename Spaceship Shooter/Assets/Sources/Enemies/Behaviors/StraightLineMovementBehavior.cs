@@ -6,16 +6,28 @@ public class StraightLineMovementBehavior : EnemyBehavior
 
     private readonly Vector3 _moveDirection;
 
-    public StraightLineMovementBehavior(Enemy enemy, float maxAngleDiffernce) : base(enemy)
+    private readonly float _lifeTime;
+    private float _timeSinceInitialization;
+
+    public StraightLineMovementBehavior(Enemy enemy, float maxAngleDiffernce, float lifeTime) : base(enemy)
     {
         _maxAngleDifference = maxAngleDiffernce;
 
         _moveDirection = CalculateDirection();
         _enemyRb.rotation = Utils.CalculateRotation(_moveDirection);
+
+        _lifeTime = lifeTime;
+        _timeSinceInitialization = 0f;
     }
 
     public override void DoBehavior()
     {
+        _timeSinceInitialization += Time.deltaTime;
+        if (_timeSinceInitialization >= _lifeTime)
+        {
+            Utils.DestroyGO(_enemy.gameObject);
+        }
+
         Move();
     }
 

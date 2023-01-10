@@ -12,4 +12,9 @@ public class Utils : MonoBehaviour
         var angle = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg;
         return Quaternion.Euler(0, angle, 0);
     }
+
+    public static void DestroyGO(GameObject obj)
+    {
+        Destroy(obj);
+    }
 }

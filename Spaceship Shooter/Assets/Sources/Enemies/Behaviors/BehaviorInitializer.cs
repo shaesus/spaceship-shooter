@@ -5,7 +5,8 @@ public class BehaviorInitializer : MonoBehaviour
     public static BehaviorInitializer Instance { get; private set; }
 
     [Header("Straight Line Movement Behavior Attributes")]
-    [SerializeField] private float maxAngleDifference = 30f;
+    [SerializeField] private float _maxAngleDifference = 30f;
+    [SerializeField] private float _lifeTime = 1f;
 
     [Header("Staying And Shooting Behavior Attributes")]
     [SerializeField] private Vector3 _shootPointOffset;
@@ -32,7 +33,7 @@ public class BehaviorInitializer : MonoBehaviour
         }
         else if (enemy.CompareTag("StraightLine"))
         {
-            enemy.SetBehavior(new StraightLineMovementBehavior(enemy, maxAngleDifference));
+            enemy.SetBehavior(new StraightLineMovementBehavior(enemy, _maxAngleDifference, _lifeTime));
         }
         else if (enemy.CompareTag("StayAndShoot"))
         {
