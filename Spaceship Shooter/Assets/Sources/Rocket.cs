@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Rocket : MonoBehaviour
+public abstract class Rocket : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _lifeTime = 5f;
@@ -20,11 +20,5 @@ public class Rocket : MonoBehaviour
         _rb.MovePosition(_rb.position + transform.up * _moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<Enemy>(out var enemy) && enemy is IDamagable)
-        {
-            enemy.TakeDamage();
-        }
-    }
+    protected abstract void OnTriggerEnter(Collider other);
 }

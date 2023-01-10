@@ -21,7 +21,6 @@ public class FollowingBehavior : EnemyBehavior
 
     private void Rotate()
     {
-        var angleToPlayer = Mathf.Atan2(_directionToPlayer.x, _directionToPlayer.z) * Mathf.Rad2Deg;
-        _enemyRb.rotation = Quaternion.Euler(0, angleToPlayer, 0);
+        _enemyRb.rotation = Utils.CalculateRotation(_directionToPlayer);
     }
 }

@@ -20,8 +20,7 @@ public class PlayerShooting : MonoBehaviour
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _lookDirection = (_mousePos - transform.position).normalized;
 
-        var angle = Mathf.Atan2(_lookDirection.x, _lookDirection.z) * Mathf.Rad2Deg;
-        _rb.rotation = Quaternion.Euler(0, angle, 0);
+        _rb.rotation = Utils.CalculateRotation(_lookDirection);
 
         if (Input.GetMouseButtonDown(0))
         {

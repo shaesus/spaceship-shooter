@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        _spawnRadius = Playground.Instance.MaxX;
+
         StartCoroutine(SpawnEnemies());
     }
 
@@ -23,21 +25,19 @@ public class EnemySpawner : MonoBehaviour
 
             var randomEnemy = _enemies[Random.Range(0, _enemies.Length)];
 
+            Vector3 offset;
+            var rndAngle = Random.Range(0, 360);
             if (randomEnemy.CompareTag("StayAndShoot"))
             {
-                _spawnRadius = Playground.Instance.MaxX / 2;
+                offset = new Vector3(Mathf.Cos(rndAngle) * _spawnRadius / 2, 0, Mathf.Sin(rndAngle) * _spawnRadius / 2);
             }
             else
             {
-                _spawnRadius = Playground.Instance.MaxX;
+                offset = new Vector3(Mathf.Cos(rndAngle) * _spawnRadius, 0, Mathf.Sin(rndAngle) * _spawnRadius);
             }
 
-            var rndAngle = Random.Range(0, 360);
-
-            var offset = new Vector3(Mathf.Cos(rndAngle) * _spawnRadius, 0, Mathf.Sin(rndAngle) * _spawnRadius);
-
             var enemy = Instantiate(randomEnemy, _center + offset, Quaternion.identity);
-            BehaviorInitializer.InitializeBehavior(enemy);
+            BehaviorInitializer.Instance.InitializeBehavior(enemy);
         }
     }
 }

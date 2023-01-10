@@ -6,13 +6,12 @@ public class StraightLineMovementBehavior : EnemyBehavior
 
     private readonly Vector3 _moveDirection;
 
-    public StraightLineMovementBehavior(Enemy enemy, float angleRange) : base(enemy)
+    public StraightLineMovementBehavior(Enemy enemy, float maxAngleDiffernce) : base(enemy)
     {
-        _maxAngleDifference = angleRange;
+        _maxAngleDifference = maxAngleDiffernce;
 
         _moveDirection = CalculateDirection();
-
-        _enemyRb.rotation = CalculateRotation();
+        _enemyRb.rotation = Utils.CalculateRotation(_moveDirection);
     }
 
     public override void DoBehavior()
@@ -23,13 +22,6 @@ public class StraightLineMovementBehavior : EnemyBehavior
     private void Move()
     {
         _enemyRb.MovePosition(_enemyRb.position + _moveDirection * _enemy.MoveSpeed * Time.deltaTime);
-    }
-
-    private Quaternion CalculateRotation()
-    {
-        var angle = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
-
-        return Quaternion.Euler(0, angle, 0);
     }
 
     private Vector3 CalculateDirection()

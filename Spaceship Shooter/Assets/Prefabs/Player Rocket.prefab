@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33322183918802736}
   - component: {fileID: 23339431967401134}
   - component: {fileID: 8369681863169439669}
-  - component: {fileID: -7411773088275782379}
   - component: {fileID: 5867365160147773289}
+  - component: {fileID: -343038859077560088}
   m_Layer: 7
   m_Name: Player Rocket
   m_TagString: Untagged
@@ -102,20 +102,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &-7411773088275782379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442891505108088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4f968d5210b64044ad936a811c34360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 10
-  _lifeTime: 5
 --- !u!64 &5867365160147773289
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -130,3 +116,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 22eca42868f30c24ab3c2f251d237633, type: 3}
+--- !u!114 &-343038859077560088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442891505108088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ae4dac51ea9544883b29a3bb5e142a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 10
+  _lifeTime: 5

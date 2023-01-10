@@ -1,22 +1,42 @@
 using UnityEngine;
 
-public static class BehaviorInitializer
+public class BehaviorInitializer : MonoBehaviour
 {
-    public static void InitializeBehavior(Enemy enemy)
-    {
-        var playerTransform = Player.Instance.transform;
+    public static BehaviorInitializer Instance { get; private set; }
 
+    [Header("Straight Line Movement Behavior Attributes")]
+    [SerializeField] private float maxAngleDifference = 30f;
+
+    [Header("Staying And Shooting Behavior Attributes")]
+    [SerializeField] private Vector3 _shootPointOffset;
+    [SerializeField] private float _shootCd;
+    [SerializeField] private Rocket _rocketPrefab;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void InitializeBehavior(Enemy enemy)
+    {
         if (enemy.CompareTag("Follow"))
         {
             enemy.SetBehavior(new FollowingBehavior(enemy));
         }
         else if (enemy.CompareTag("StraightLine"))
         {
-            enemy.SetBehavior(new StraightLineMovementBehavior(enemy, 30f));
+            enemy.SetBehavior(new StraightLineMovementBehavior(enemy, maxAngleDifference));
         }
         else if (enemy.CompareTag("StayAndShoot"))
         {
-            enemy.SetBehavior(new StayAndShootBehavior(enemy));
+            enemy.SetBehavior(new StayAndShootBehavior(enemy, _shootPointOffset, _shootCd, _rocketPrefab));
         }
         else
         {
