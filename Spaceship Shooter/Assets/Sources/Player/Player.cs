@@ -1,11 +1,16 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
     public static Player Instance { get; private set; }
 
+    public event Action OnPlayerDie;
+
     public Rigidbody PlayerRb { get; private set; }
+
+    [SerializeField] private int _maxHitsCount = 3;
 
     private void Awake()
     {
@@ -24,5 +29,17 @@ public class Player : MonoBehaviour
         }
 
         PlayerRb = GetComponent<Rigidbody>();
+    }
+
+    public void TakeDamage()
+    {
+        _maxHitsCount--;
+        Debug.Log("Player took damage!");
+
+        if (_maxHitsCount <= 0)
+        {
+            OnPlayerDie?.Invoke();
+            Debug.Log("Player died!");
+        }
     }
 }

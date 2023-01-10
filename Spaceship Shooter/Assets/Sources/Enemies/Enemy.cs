@@ -1,32 +1,35 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private float _moveSpeed = 3f;
     public float MoveSpeed { get { return _moveSpeed; } }
 
     private EnemyBehavior _behavior;
 
-    private Rigidbody _rb;
-
-    private void Awake()
+    public void SetBehavior(EnemyBehavior behavior)
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        if (CompareTag("Follow"))
-        {
-            _behavior = new FollowingBehavior(this, FindObjectOfType<Player>().transform);
-        }
-
-        _rb = GetComponent<Rigidbody>();
+        _behavior = behavior;
     }
 
     private void Update()
     {
-        _behavior.DoBehavior();
+        _behavior?.DoBehavior();
+    }
+
+    public void TakeDamage()
+    {
+        Destroy(gameObject);
+        //Particles
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<Player>(out var player) && player is IDamagable)
+        {
+            player.TakeDamage();
+            TakeDamage();
+        }
     }
 }
