@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _spawnRadius = Playground.Instance.MaxX;
-
+        
         StartCoroutine(SpawnEnemies());
     }
 
