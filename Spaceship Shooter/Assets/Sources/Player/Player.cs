@@ -6,7 +6,7 @@ public class Player : MonoBehaviour, IDamagable
 {
     public static Player Instance { get; private set; }
 
-    public event Action OnPlayerDie;
+    public event Action PlayerDie;
 
     public Rigidbody PlayerRb { get; private set; }
 
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IDamagable
 
         if (_maxHitsCount <= 0)
         {
-            OnPlayerDie?.Invoke();
+            PlayerDie?.Invoke();
             Debug.Log("Player died!");
         }
     }

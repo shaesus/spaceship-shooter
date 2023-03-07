@@ -14,7 +14,7 @@ public class ScoreUI : MonoBehaviour
 
     private void Start()
     {
-        _playerScore.OnScoreUpdated += UpdateText;
+        _playerScore.ScoreUpdated += UpdateText;
     }
 
     private void UpdateText()

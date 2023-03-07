@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class PlayerScore : MonoBehaviour
 {
-    public event Action OnScoreUpdated;
+    public event Action ScoreUpdated;
 
     public int Score { get; private set; }
 
     private void Awake()
     {
-        Enemy.OnEnemyDie += IncrementScore;
+        Enemy.EnemyDied += IncrementScore;
     }
 
     private void IncrementScore()
     {
         Score++;
-        OnScoreUpdated?.Invoke();
+        ScoreUpdated?.Invoke();
     }
 }

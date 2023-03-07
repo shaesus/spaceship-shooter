@@ -5,6 +5,6 @@ public class SceneLoader : MonoBehaviour
 {
     private void Start()
     {
-        Player.Instance.OnPlayerDie += () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Player.Instance.PlayerDie += () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour, IDamagable
 {
-    public static event Action OnEnemyDie;
+    public static event Action EnemyDied;
 
     [SerializeField] private float _moveSpeed = 3f;
     public float MoveSpeed { get { return _moveSpeed; } }
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void TakeDamage()
     {
-        OnEnemyDie?.Invoke();
+        EnemyDied?.Invoke();
         Destroy(gameObject);
     }
 

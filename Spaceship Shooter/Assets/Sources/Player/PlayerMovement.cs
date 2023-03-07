@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _movement;
 
-    private Rigidbody _rb => Player.Instance.PlayerRb;
+    private Rigidbody Rb => Player.Instance.PlayerRb;
 
     private void Update()
     {
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _movement * (_moveSpeed * Time.fixedDeltaTime));
+        Rb.MovePosition(Rb.position + _movement * (_moveSpeed * Time.fixedDeltaTime));
     }
 
     private void CheckBounds()

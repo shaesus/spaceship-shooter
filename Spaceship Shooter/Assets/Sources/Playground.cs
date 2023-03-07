@@ -10,8 +10,8 @@ public class Playground : MonoBehaviour
     private Vector3 _center;
     private Vector3 _bounds;
 
-    private float _camOrthSize => Camera.main.orthographicSize;
-    private float _aspectRatio => Camera.main.aspect;
+    private float CamOrthSize => Camera.main.orthographicSize;
+    private float AspectRatio => Camera.main.aspect;
 
     private void Awake()
     {
@@ -29,8 +29,8 @@ public class Playground : MonoBehaviour
             Destroy(gameObject);
         }
 
-        MaxY = _camOrthSize;
-        MaxX = MaxY * _aspectRatio;
+        MaxY = CamOrthSize;
+        MaxX = MaxY * AspectRatio;
 
         _center = Vector3.zero;
         _bounds = new Vector3(MaxX, 0.01f, MaxY) * 2;
