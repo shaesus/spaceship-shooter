@@ -6,7 +6,7 @@ public class PlayerRocket : Rocket
     {
         if (other.TryGetComponent<Enemy>(out var enemy))
         {
-            enemy.TakeDamage();
+            enemy.Die();
             Destroy(gameObject);
         }
     }

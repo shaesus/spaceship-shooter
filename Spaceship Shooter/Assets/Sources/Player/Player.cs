@@ -10,7 +10,7 @@ public class Player : MonoBehaviour, IDamagable
 
     public Rigidbody PlayerRb { get; private set; }
 
-    [SerializeField] private int _maxHitsCount = 3;
+    [SerializeField] private int _hp = 3;
 
     private void Awake()
     {
@@ -31,12 +31,12 @@ public class Player : MonoBehaviour, IDamagable
         PlayerRb = GetComponent<Rigidbody>();
     }
 
-    public void TakeDamage()
+    public void Die()
     {
-        _maxHitsCount--;
+        _hp--;
         Debug.Log("Player took damage!");
 
-        if (_maxHitsCount <= 0)
+        if (_hp <= 0)
         {
             PlayerDie?.Invoke();
             Debug.Log("Player died!");

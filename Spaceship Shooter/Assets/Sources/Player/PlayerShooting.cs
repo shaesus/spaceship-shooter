@@ -5,6 +5,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Rocket _rocket;
 
     [SerializeField] private Transform _shootPoint;
+
     private Vector3 _mousePos;
     private Vector3 _lookDirection;
 

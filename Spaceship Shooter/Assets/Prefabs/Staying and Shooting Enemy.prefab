@@ -128,4 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f737f0d6d3485bf488518434eebd8d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trail: {fileID: 0}
+  _collider: {fileID: 1054994744492342919}
+  _meshRenderer: {fileID: 6362638565550921410}
   _moveSpeed: 3

@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f737f0d6d3485bf488518434eebd8d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trail: {fileID: 5582770972313789708}
+  _collider: {fileID: 8647666725656673956}
+  _meshRenderer: {fileID: 8302745649973053861}
   _moveSpeed: 3
 --- !u!1001 &4778834191301752876
 PrefabInstance:
@@ -187,6 +190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2919bd15bcb436d4eb3daac11820c9ca, type: 3}
+--- !u!198 &5582770972313789708 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1092167983006489888, guid: 2919bd15bcb436d4eb3daac11820c9ca, type: 3}
+  m_PrefabInstance: {fileID: 4778834191301752876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5582770972313789710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1092167983006489890, guid: 2919bd15bcb436d4eb3daac11820c9ca, type: 3}

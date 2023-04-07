@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float _xInput;
     private float _yInput;
 
-    private Vector3 _movement;
+    private Vector3 _movementDirection;
 
     private Rigidbody Rb => Player.Instance.PlayerRb;
 
@@ -16,17 +16,17 @@ public class PlayerMovement : MonoBehaviour
         _xInput = Input.GetAxis("Horizontal");
         _yInput = Input.GetAxis("Vertical");
 
-        _movement = new Vector3(_xInput, 0, _yInput);
+        _movementDirection = new Vector3(_xInput, 0, _yInput);
 
-        CheckBounds();
+        KeepInBounds();
     }
 
     private void FixedUpdate()
     {
-        Rb.MovePosition(Rb.position + _movement * (_moveSpeed * Time.fixedDeltaTime));
+        Rb.MovePosition(Rb.position + _movementDirection * (_moveSpeed * Time.fixedDeltaTime));
     }
 
-    private void CheckBounds()
+    private void KeepInBounds()
     {
         if (transform.position.x > Playground.Instance.MaxX)
         {

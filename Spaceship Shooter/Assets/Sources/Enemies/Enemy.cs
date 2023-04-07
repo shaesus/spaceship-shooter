@@ -6,10 +6,16 @@ public class Enemy : MonoBehaviour, IDamagable
 {
     public static event Action EnemyDied;
 
+    [SerializeField] private ParticleSystem _trail;
+    [SerializeField] private MeshCollider _collider;
+    [SerializeField] private MeshRenderer _meshRenderer;
+
     [SerializeField] private float _moveSpeed = 3f;
     public float MoveSpeed { get { return _moveSpeed; } }
 
     private EnemyBehavior _behavior;
+
+    private bool _isDead = false;
 
     public void SetBehavior(EnemyBehavior behavior)
     {
@@ -18,21 +24,35 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        _behavior?.DoBehavior();
+        if (!_isDead)
+        {
+            _behavior?.DoBehavior();
+        }
     }
 
-    public void TakeDamage()
+    public void Die()
     {
+        _isDead = true;
         EnemyDied?.Invoke();
-        Destroy(gameObject);
+
+        if (_trail != null)
+        {
+            _meshRenderer.enabled = false;
+            _collider.enabled = false;
+            Destroy(gameObject, _trail.startLifetime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<Player>(out var player) && player is IDamagable)
+        if (collision.gameObject.TryGetComponent<Player>(out var player))
         {
-            player.TakeDamage();
-            TakeDamage();
+            player.Die();
+            Die();
         }
     }
 }
